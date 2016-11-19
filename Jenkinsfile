@@ -5,4 +5,7 @@ node('sig-configmanagement') {
     stage('setup virtualenv') {
         sh './ci/setup-virtualenv.sh'
     }
+    stage('testing') {
+        sh './ci/test.sh'
+    }
 }
