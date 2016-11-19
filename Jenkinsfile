@@ -1,4 +1,8 @@
 node('sig-configmanagement') {
-    git url: 'https://github.com/centos-sig-configmanagement/jenkins-jobs'
-    sh 'ls'
+    stage('checkout') {
+        git url: 'https://github.com/centos-sig-configmanagement/jenkins-jobs'
+    }
+    stage('setup virtualenv') {
+        sh './ci/setup-virtualenv.sh'
+    }
 }
