@@ -1,3 +1,3 @@
-node {
+node('sig-configmanagement') {
     sh 'ls'
 }
