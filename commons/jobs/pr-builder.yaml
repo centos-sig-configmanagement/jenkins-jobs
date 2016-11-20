@@ -9,7 +9,7 @@
       - git:
             url: https://github.com/centos-sig-configmanagement/{name}
             branches:
-              - origin/{branch}
+              - '${{sha1}}'
     triggers:
       - githubprb:
           admins: '{obj:admins}'
