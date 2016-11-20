@@ -4,7 +4,7 @@
     version:
     - 4:
         branch: master
-        tag: configmanagement7-puppet-4-candidate
+        build-target: configmanagement7-puppet-4-el7
     jobs:
     - 'sig-configmanagement-{name}-{version}'
     admins:

@@ -19,5 +19,5 @@
           specfile: '{name}.spec'
       - get-srpm:
       - scratch-build-rpm:
-          tag: '{tag}'
+          build-target: '{build-target}'
       - free-duffy-node:
