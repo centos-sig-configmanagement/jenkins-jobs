@@ -25,6 +25,7 @@
           # Ensure we do not expose secrets
           set +x
           source jenkins-env
+          set -x
           sshopts="-t -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l root"
           ssh_cmd="ssh $sshopts $CICO_hostname"
           $ssh_cmd yum -y install rsync
