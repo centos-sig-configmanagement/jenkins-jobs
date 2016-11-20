@@ -1,0 +1,11 @@
+- project:
+    name: puppet
+    prettyname: Puppet
+    version:
+    - 4:
+        branch: master
+    jobs:
+    - 'sig-configmanagement-{name}-{version}'
+    admins:
+      - roidelapluie
+      - hguemar
