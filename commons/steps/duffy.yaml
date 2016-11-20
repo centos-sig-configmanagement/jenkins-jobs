@@ -15,6 +15,12 @@
           export CICO_hostname CICO_ssid
           env | grep CICO > jenkins-env
           $ssh_cmd yum -y install {packages}
+
+- builder:
+    name: bootstrap-duffy-node-for-srpm
+    builders:
+      - bootstrap-duffy-node:
+          packages: rpmdevtools rpm-build
       - copy-workspace-to-duffy-node:
 
 - builder:
@@ -40,7 +46,8 @@
           source jenkins-env
           sshopts="-t -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l root"
           ssh_cmd="ssh $sshopts $CICO_hostname"
-          $ssh_cmd spectool workspace/{file}
+          $ssh_cmd spectool -C workspace workspace/{file}
+          $ssh_cmd rpmbuild --define '_topdir .' --define '_sourcedir workspace' -bs workspace/{file}
 
 - builder:
     name: free-duffy-node

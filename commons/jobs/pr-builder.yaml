@@ -14,8 +14,7 @@
       - githubprb:
           admins: '{obj:admins}'
     builders:
-      - bootstrap-duffy-node:
-          packages: rpmdevtools
+      - bootstrap-duffy-node-for-srpm:
       - build-spec-file:
           file: '{name}.spec'
       - free-duffy-node:
