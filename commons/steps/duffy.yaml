@@ -12,6 +12,7 @@
           echo "CICO Hostname: $CICO_hostname, SSID: $CICO_ssid" | tee cicologs/bootstrap.log
           sshopts="-t -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l root"
           ssh_cmd="ssh $sshopts $CICO_hostname"
+          export CICO_hostname CICO_ssid
           env | grep CICO > jenkins-env
           $ssh_cmd yum -y install {packages}
 
