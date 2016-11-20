@@ -9,7 +9,7 @@
           mkdir -p cicologs
           export CICO_API_KEY=$(cat ~/duffy.key)
           read CICO_hostname CICO_ssid <<< $(cico node get -f value -c ip_address -c comment)
-          echo "CICO Hostname: ${CICO_hostname}, SSID: ${CICO_ssid}" | tee cicologs/bootstrap.log
+          echo "CICO Hostname: $CICO_hostname, SSID: $CICO_ssid" | tee cicologs/bootstrap.log
           sshopts="-t -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l root"
           ssh_cmd="ssh $sshopts $CICO_hostname"
           env | grep CICO > jenkins-env
