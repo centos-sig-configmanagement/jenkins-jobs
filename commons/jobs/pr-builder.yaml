@@ -1,5 +1,6 @@
 - job-template:
     name: 'sig-configmanagement-{name}-{version}'
+    display-name: 'Config Management SIG / {prettyname} {version}'
     scm:
       - git:
             url: https://github.com/centos-sig-configmanagement/{name}
