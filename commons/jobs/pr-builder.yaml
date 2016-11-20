@@ -10,11 +10,12 @@
             url: https://github.com/centos-sig-configmanagement/{name}
             branches:
               - origin/{branch}
-    builders:
-      - bootstrap-duffy-node:
-          packages: rpmdevtools
-      - free-duffy-node:
     triggers:
       - githubprb:
           admins: '{obj:admins}'
-
+    builders:
+      - bootstrap-duffy-node:
+          packages: rpmdevtools
+      - build-spec-file:
+          file: '{name}.spec'
+      - free-duffy-node:
