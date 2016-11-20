@@ -47,7 +47,7 @@
           sshopts="-t -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l root"
           ssh_cmd="ssh $sshopts $CICO_hostname"
           $ssh_cmd spectool -C workspace workspace/{file}
-          $ssh_cmd rpmbuild --define '_topdir .' --define '_sourcedir workspace' -bs workspace/{file}
+          $ssh_cmd rpmbuild --define '"_topdir /root"' --define '"_sourcedir workspace"' -bs workspace/{file}
 
 - builder:
     name: free-duffy-node
