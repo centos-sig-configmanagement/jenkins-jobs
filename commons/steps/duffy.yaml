@@ -48,6 +48,8 @@
           ssh_cmd="ssh $sshopts $CICO_hostname"
           $ssh_cmd spectool -g -C workspace workspace/{file}
           $ssh_cmd rpmbuild --define '"_topdir /root"' --define '"_sourcedir workspace"' -bs workspace/{file}
+          rsync -e "ssh $sshopts" -rlpt $CICO_hostname:SRPM/ $(pwd)
+          ls
 
 - builder:
     name: free-duffy-node
