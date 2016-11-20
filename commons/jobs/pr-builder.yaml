@@ -7,8 +7,7 @@
           url: https://github.com/centos-sig-configmanagement/{name}
     scm:
       - git:
-            url: ssh://git@github.com/centos-sig-configmanagement/{name}
-            credentials-id: '1d7dba44-5b34-42b3-886c-4d659ffb2aae'
+            url: https://github.com/centos-sig-configmanagement/{name}
             branches:
               - origin/{branch}
     builders:
