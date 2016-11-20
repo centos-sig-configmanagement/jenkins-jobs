@@ -68,7 +68,7 @@
           # Ensure we do not expose secrets
           set +x
           # Remove me: debug
-          set +x
+          set -x
           cbs build --scratch {tag} *.src.rpm
 
 - builder:
