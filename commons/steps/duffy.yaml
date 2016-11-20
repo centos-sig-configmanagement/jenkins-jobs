@@ -25,12 +25,10 @@
           # Ensure we do not expose secrets
           set +x
           source jenkins-env
-          set -x
           sshopts="-t -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l root"
           ssh_cmd="ssh $sshopts $CICO_hostname"
           $ssh_cmd yum -y install rsync
-          rsync -e "ssh $sshopts" -Ha $(pwd)/ $CICO_hostname:
-          $ssh_cmd ls
+          rsync -e "ssh $sshopts" -Ha $(pwd)/ $CICO_hostname:workspace
 
 - builder:
     name: build-spec-file
@@ -42,7 +40,7 @@
           source jenkins-env
           sshopts="-t -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l root"
           ssh_cmd="ssh $sshopts $CICO_hostname"
-          $ssh_cmd spectool {file}
+          $ssh_cmd spectool workspace/{file}
 
 - builder:
     name: free-duffy-node
