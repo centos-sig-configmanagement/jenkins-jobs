@@ -69,7 +69,7 @@
           set +x
           # Remove me: debug
           set -x
-          cbs build --scratch {build-target} *.src.rpm
+          cbs build --wait --scratch {build-target} *.src.rpm
 
 - builder:
     name: free-duffy-node
