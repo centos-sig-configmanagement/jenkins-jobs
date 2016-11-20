@@ -67,8 +67,6 @@
           #!/bin/bash -e
           # Ensure we do not expose secrets
           set +x
-          # Remove me: debug
-          set -x
           cbs build --wait --scratch {build-target} *.src.rpm
 
 - builder:
