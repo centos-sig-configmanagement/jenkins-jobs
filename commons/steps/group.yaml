@@ -1,0 +1,10 @@
+- builder:
+    name: scratch-build
+    builders:
+      - bootstrap-duffy-node-for-srpm:
+      - build-srpm:
+          specfile: '{name}.spec'
+      - get-srpm:
+      - free-duffy-node:
+      - scratch-build-rpm:
+          build-target: '{build-target}'
