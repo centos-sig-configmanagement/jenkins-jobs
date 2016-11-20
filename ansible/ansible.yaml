@@ -4,6 +4,7 @@
     version:
     - 2.2:
         branch: master
+        tag: bananas7-testing
     jobs:
     - 'sig-configmanagement-{name}-{version}'
     admins:

@@ -37,7 +37,7 @@
           rsync -e "ssh $sshopts" -rlpt $(pwd)/ $CICO_hostname:workspace
 
 - builder:
-    name: build-spec-file
+    name: build-srpm
     builders:
       - shell: |
           #!/bin/bash -e
@@ -46,10 +46,28 @@
           source jenkins-env
           sshopts="-t -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l root"
           ssh_cmd="ssh $sshopts $CICO_hostname"
-          $ssh_cmd spectool -g -C workspace workspace/{file}
-          $ssh_cmd rpmbuild --define '"_topdir /root"' --define '"_sourcedir workspace"' -bs workspace/{file}
+          $ssh_cmd spectool -g -C workspace workspace/{specfile}
+          $ssh_cmd rpmbuild --define '"_topdir /root"' --define '"_sourcedir workspace"' -bs workspace/{specfile}
+
+- builder:
+    name: get-srpm
+    builders:
+      - shell: |
+          #!/bin/bash -e
+          # Ensure we do not expose secrets
+          set +x
+          source jenkins-env
+          sshopts="-t -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l root"
           rsync -e "ssh $sshopts" -rlpt $CICO_hostname:SRPMS/ $(pwd)
-          ls
+
+- builder:
+    name: scratch-build-rpm
+    builders:
+      - shell: |
+          #!/bin/bash -e
+          # Ensure we do not expose secrets
+          set +x
+          cbs build --scratch {tag} *.src.rpm
 
 - builder:
     name: free-duffy-node

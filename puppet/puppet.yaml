@@ -4,6 +4,7 @@
     version:
     - 4:
         branch: master
+        tag: configmanagement7-puppet-4-candidate
     jobs:
     - 'sig-configmanagement-{name}-{version}'
     admins:
