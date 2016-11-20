@@ -11,7 +11,9 @@
             branches:
               - origin/{branch}
     builders:
-      - shell: 'ls'
+      - bootstrap-duffy-node:
+          packages: rpmdevtools
+      - free-duffy-node:
     triggers:
       - githubprb:
           admins: '{obj:admins}'
