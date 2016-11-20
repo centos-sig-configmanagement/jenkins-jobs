@@ -28,7 +28,7 @@
           sshopts="-t -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l root"
           ssh_cmd="ssh $sshopts $CICO_hostname"
           $ssh_cmd yum -y install rsync
-          rsync -e "$ssh_cmd" -Ha $(pwd)/ $CICO_hostname:
+          rsync -e "ssh $sshopts" -Ha $(pwd)/ $CICO_hostname:
           $ssh_cmd ls
 
 - builder:
