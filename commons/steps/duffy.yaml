@@ -24,5 +24,6 @@
           # Ensure we do not expose secrets
           set +x
           source jenkins-env
+          export CICO_API_KEY
           cico node done $CICO_ssid
           exit $rtn_code
