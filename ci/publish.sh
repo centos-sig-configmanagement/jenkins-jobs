@@ -1,3 +1,3 @@
 #!/bin/bash -xe
 
-jenkins-jobs update -r jobs/
+jenkins-jobs update -r .

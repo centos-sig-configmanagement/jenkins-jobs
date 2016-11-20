@@ -1,0 +1,11 @@
+- trigger:
+    name: githubprb
+    triggers:
+      - github-pull-request:
+          admin-list: '{obj:admins}'
+          cron: '* * * * *'
+          github-hooks: false
+          permit-all: false
+          trigger-phrase: '.*\[test\].*'
+          allow-whitelist-orgs-as-admins: true
+          status-context: "ci.centos.org PR build"

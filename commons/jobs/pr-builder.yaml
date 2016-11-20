@@ -1,11 +1,3 @@
-- project:
-    name: ansible
-    version:
-    - 22:
-        branch: master
-    jobs:
-    - 'sig-configmanagement-{name}-{version}'
-
 - job-template:
     name: 'sig-configmanagement-{name}-{version}'
     scm:
@@ -16,5 +8,6 @@
     builders:
       - shell: 'ls'
     triggers:
-      - github
+      - githubprb:
+          admins: '{obj:admins}'
 

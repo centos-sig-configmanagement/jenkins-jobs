@@ -2,4 +2,4 @@
 
 jenkins-jobs --version
 
-jenkins-jobs test -r jobs/
+jenkins-jobs test -r .

@@ -1,0 +1,10 @@
+- project:
+    name: ansible
+    version:
+    - 22:
+        branch: master
+    jobs:
+    - 'sig-configmanagement-{name}-{version}'
+    admins:
+      - roidelapluie
+      - fcami
