@@ -3,7 +3,8 @@
     display-name: 'Config Management SIG / {prettyname} {version}'
     scm:
       - git:
-            url: https://github.com/centos-sig-configmanagement/{name}
+            url: ssh://git@github.com/centos-sig-configmanagement/{name}
+            credentials: '1d7dba44-5b34-42b3-886c-4d659ffb2aae'
             branches:
               - origin/{branch}
     builders:
