@@ -13,9 +13,7 @@
           sshopts="-t -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l root"
           ssh_cmd="ssh $sshopts $CICO_hostname"
           export CICO_hostname CICO_ssid
-          export ssh_cmd
           env | grep CICO > jenkins-env
-          env | grep ^ssh_cmd= >> jenkins-env
           $ssh_cmd yum -y install {packages}
       - copy-workspace-to-duffy-node:
 
@@ -27,6 +25,8 @@
           # Ensure we do not expose secrets
           set +x
           source jenkins-env
+          sshopts="-t -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l root"
+          ssh_cmd="ssh $sshopts $CICO_hostname"
           $ssh_cmd yum -y install rsync
           rsync -e "$ssh_cmd" -Ha $(pwd)/ $CICO_hostname:
           $ssh_cmd ls
@@ -39,6 +39,8 @@
           # Ensure we do not expose secrets
           set +x
           source jenkins-env
+          sshopts="-t -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l root"
+          ssh_cmd="ssh $sshopts $CICO_hostname"
           $ssh_cmd spectool {file}
 
 - builder:
