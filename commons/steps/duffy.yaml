@@ -61,15 +61,6 @@
           rsync -e "ssh $sshopts" -rlpt $CICO_hostname:SRPMS/ $(pwd)
 
 - builder:
-    name: scratch-build-rpm
-    builders:
-      - shell: |
-          #!/bin/bash -e
-          # Ensure we do not expose secrets
-          set +x
-          cbs build --wait --scratch {build-target} *.src.rpm
-
-- builder:
     name: free-duffy-node
     builders:
       - shell: |

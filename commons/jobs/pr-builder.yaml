@@ -18,6 +18,6 @@
       - build-srpm:
           specfile: '{name}.spec'
       - get-srpm:
+      - free-duffy-node:
       - scratch-build-rpm:
           build-target: '{build-target}'
-      - free-duffy-node:

@@ -1,0 +1,9 @@
+- builder:
+    name: scratch-build-rpm
+    builders:
+      - shell: |
+          #!/bin/bash -e
+          # Ensure we do not expose secrets
+          set +x
+          cbs build --wait --scratch {build-target} *.src.rpm
+
