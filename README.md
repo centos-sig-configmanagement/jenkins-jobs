@@ -5,6 +5,6 @@ Management SIG.
 
 ## Credentials
 
-Jenkins credentials are stored in the Jenkins Slave at
+Jenkins credentials are stored in the SIG Jenkins Node at
 `~sig-configmanagement/.config/jenkins_jobs/jenkins_jobs.ini`.
 
