@@ -7,7 +7,7 @@
           set +x
           set -o pipefail
           cbs build --wait --scratch {build-target} *.src.rpm | tee cbs.log
-          build_id=$(grep ^"Task info:" cbs.log)|cut -d= -f 2
+          build_id=$(awk '/Created task:/ {print #3}' cbs.log)
           mkdir archives
           cd archives
           cbs download-task $build_id
