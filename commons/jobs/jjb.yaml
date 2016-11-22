@@ -2,6 +2,10 @@
     name: 'sig-configmanagement-jjb'
     display-name: 'Config Management SIG / Job Builder'
     node: sig-configmanagement
+    parameters:
+      - string:
+          name: sha1
+          default: master
     properties:
       - github:
           url: https://github.com/centos-sig-configmanagement/jenkins-jobs

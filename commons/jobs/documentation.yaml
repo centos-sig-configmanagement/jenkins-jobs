@@ -2,6 +2,10 @@
     name: 'sig-configmanagement-documentation'
     display-name: 'Config Management SIG / Documentation'
     node: sig-configmanagement
+    parameters:
+      - string:
+          name: sha1
+          default: master
     properties:
       - github:
           url: https://github.com/centos-sig-configmanagement/centos-sig-configmanagement.github.io
