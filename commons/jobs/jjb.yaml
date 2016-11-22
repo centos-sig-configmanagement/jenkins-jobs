@@ -14,7 +14,7 @@
             refspec: +refs/heads/*:refs/remotes/origin/* +refs/pull/*:refs/remotes/origin/pr/*
             url: https://github.com/centos-sig-configmanagement/jenkins-jobs
             branches:
-              - '${{sha1}}'
+              - '${sha1}'
     triggers:
       - github:
       - githubprb:
@@ -29,7 +29,7 @@
           set +x
           set -o pipefail
           ./ci/test.sh
-          if [[ -z ${{ghprbActualCommit}} ]]
+          if [[ -z ${ghprbActualCommit} ]]
           then
             exit 0
           fi
