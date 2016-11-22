@@ -2,6 +2,8 @@
     name: 'sig-configmanagement-jjb'
     display-name: 'Config Management SIG / Job Builder'
     node: sig-configmanagement
+    logrotate:
+      numToKeep: 15
     parameters:
       - string:
           name: sha1
