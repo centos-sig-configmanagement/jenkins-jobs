@@ -1,6 +1,6 @@
 - job:
     name: 'sig-configmanagement-documentation'
-    display-name: 'Config Management SIG / Documentatior'
+    display-name: 'Config Management SIG / Documentation'
     node: sig-configmanagement
     properties:
       - github:
