@@ -1,0 +1,36 @@
+- builder:
+    name: centos-sig-configmanagement.github.io-build
+    builders:
+      - shell: |
+          #!/bin/bash -e
+          # Ensure we do not expose secrets
+          set +x
+          set -o pipefail
+          virtualenv venv
+          source venv/bin/activate
+          pip install -r requirements.txt
+          make html
+
+- builder:
+    name: centos-sig-configmanagement.github.io-publish
+    builders:
+      - centos-sig-configmanagement.github.io-build:
+      - shell: |
+          #!/bin/bash -e
+          # Ensure we do not expose secrets
+          cd build/html
+          git init .
+          touch .nojekyll
+          git add .
+          git commit -am 'Documentation'
+          git push -f git@github.com/centos-sig-configmanagement/centos-sig-configmanagement.github.io master:gh-branches
+
+- builder:
+    name: centos-sig-configmanagement.github.io-masterbranch
+    builders:
+      - centos-sig-configmanagement.github.io-publish:
+
+- builder:
+    name: centos-sig-configmanagement.github.io-pullrequest
+    builders:
+      - centos-sig-configmanagement.github.io-build:

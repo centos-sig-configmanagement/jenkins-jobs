@@ -3,4 +3,3 @@
     jobs:
       - sig-job-{repository}:
           repository: jenkins-jobs
-          kind: jjb
