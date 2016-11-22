@@ -32,8 +32,8 @@
                   - 'master'
           triggers:
             - github:
-          publishers:
-            - github-notifier
+          publishers: []
+#            - github-notifier
 
 - job-template:
     name: 'sig-configmanagement-jjb-{name}'
