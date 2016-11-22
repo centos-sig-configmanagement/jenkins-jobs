@@ -6,7 +6,7 @@
           # Ensure we do not expose secrets
           set +x
           set -o pipefail
-          ./ci/test.sh
+          ./test.sh
 
 - builder:
     name: jenkins-jobs-publish
@@ -15,15 +15,4 @@
           #!/bin/bash -e
           # Ensure we do not expose secrets
           set +x
-          ./ci/publish.sh
-
-- builder:
-    name: jenkins-jobs-pullrequest
-    builders:
-      - jenkins-jobs-test
-
-- builder:
-    name: jenkins-jobs-masterbranch
-    builders:
-      - jenkins-jobs-test
-      - jenkins-jobs-publish
+          ./publish.sh

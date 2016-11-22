@@ -1,0 +1,17 @@
+- project:
+    name: sig-configmanagement-jjb
+    jobs:
+      - sig-job-{repository}:
+          repository: jenkins-jobs
+          prettyname: Jenkins Jobs
+
+- builder:
+    name: jenkins-jobs-pullrequest
+    builders:
+      - jenkins-jobs-test
+
+- builder:
+    name: jenkins-jobs-masterbranch
+    builders:
+      - jenkins-jobs-test
+      - jenkins-jobs-publish

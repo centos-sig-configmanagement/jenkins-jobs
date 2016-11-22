@@ -1,3 +1,1 @@
-#!/bin/bash -xe
-
-jenkins-jobs update -r .
+../publish.sh

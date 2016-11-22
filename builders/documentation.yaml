@@ -24,13 +24,3 @@
           git add .
           git commit -am 'Documentation'
           git push -f git@github-doc:centos-sig-configmanagement/centos-sig-configmanagement.github.io master
-
-- builder:
-    name: documentation-masterbranch
-    builders:
-      - documentation-publish:
-
-- builder:
-    name: documentation-pullrequest
-    builders:
-      - documentation-build:

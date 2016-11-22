@@ -1,0 +1,16 @@
+- project:
+    name: documentation
+    jobs:
+      - sig-job-{repository}:
+          repository: documentation
+          prettyname: Documentation
+
+- builder:
+    name: documentation-masterbranch
+    builders:
+      - documentation-publish:
+
+- builder:
+    name: documentation-pullrequest
+    builders:
+      - documentation-build:
