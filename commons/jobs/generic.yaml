@@ -1,5 +1,5 @@
 - job-template:
-    name: 'sig-job-{repo}-{buildtype}'
+    name: 'sig-configmanagement-{repo}-{buildtype}'
     display-name: 'Config Management SIG / {prettyname}'
     node: sig-configmanagement
     logrotate:
