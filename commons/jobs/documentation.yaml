@@ -1,46 +1,7 @@
-- job:
-    name: 'sig-configmanagement-documentation'
-    display-name: 'Config Management SIG / Documentation'
-    node: sig-configmanagement
-    logrotate:
-      numToKeep: 15
-    parameters:
-      - string:
-          name: sha1
-          default: master
-    properties:
-      - github:
-          url: https://github.com/centos-sig-configmanagement/centos-sig-configmanagement.github.io
-    scm:
-      - git:
-            refspec: +refs/heads/*:refs/remotes/origin/* +refs/pull/*:refs/remotes/origin/pr/*
-            url: https://github.com/centos-sig-configmanagement/centos-sig-configmanagement.github.io
-            branches:
-              - '${sha1}'
-    triggers:
-      - github:
-      - githubprb:
-          admins:
-            - roidelapluie
-            - hguemar
-            - fcami
-    builders:
-      - shell: |
-          #!/bin/bash -e
-          # Ensure we do not expose secrets
-          set +x
-          set -o pipefail
-          virtualenv venv
-          source venv/bin/activate
-          pip install -r requirements.txt
-          make html
-          if [[ ${sha1} == master ]]
-          then
-            cd build/html
-            git init .
-            touch .nojekyll
-            git add .
-            git commit -am 'Documentation'
-            git push -f git@github.com/centos-sig-configmanagement/centos-sig-configmanagement.github.io master:gh-branches
-          fi
+---
 
+- project:
+    name: sig-configmanagement-centos-sig-configmanagement.github.io
+    jobs:
+      - sig-job-{repository}:
+          repository: centos-sig-configmanagement.github.io
