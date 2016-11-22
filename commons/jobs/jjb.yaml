@@ -1,6 +1,43 @@
-- job:
-    name: 'sig-configmanagement-jjb'
-    display-name: 'Config Management SIG / Job Builder'
+- project:
+    name: sig-configmanagement-jjb
+    jobs:
+      - sig-configmanagement-jjb-{name}:
+          project-name: jenkins-jobs
+          name: pr
+          prettyname: Job Builder (Pull Requests)
+          step: jjb-test
+          triggers:
+            - githubprb:
+                admins:
+                  - roidelapluie
+                  - hguemar
+                  - fcami
+          scm:
+            - git:
+                refspec: +refs/pull/*:refs/remotes/origin/pr/*
+                url: https://github.com/centos-sig-configmanagement/jenkins-jobs
+                branches:
+                  - '${{sha1}}'
+          publishers: []
+      - sig-configmanagement-jjb-{name}:
+          project-name: jenkins-jobs
+          name: master
+          prettyname: 'Job Builder'
+          step: jjb-publish
+          scm:
+            - git:
+                refspec: +refs/heads/*:refs/remotes/origin/*
+                url: https://github.com/centos-sig-configmanagement/jenkins-jobs
+                branches:
+                  - 'master'
+          triggers:
+            - github:
+          publishers:
+            - github-notifier
+
+- job-template:
+    name: 'sig-configmanagement-jjb-{name}'
+    display-name: 'Config Management SIG / {prettyname}'
     node: sig-configmanagement
     logrotate:
       numToKeep: 15
@@ -11,30 +48,8 @@
     properties:
       - github:
           url: https://github.com/centos-sig-configmanagement/jenkins-jobs
-    scm:
-      - git:
-            refspec: +refs/heads/*:refs/remotes/origin/* +refs/pull/*:refs/remotes/origin/pr/*
-            url: https://github.com/centos-sig-configmanagement/jenkins-jobs
-            branches:
-              - '${sha1}'
-    triggers:
-      - github:
-      - githubprb:
-          admins:
-            - roidelapluie
-            - hguemar
-            - fcami
-    publishers:
-      - github-notifier
+    scm: '{obj:scm}'
+    triggers: '{obj:triggers}'
     builders:
-      - shell: |
-          #!/bin/bash -e
-          # Ensure we do not expose secrets
-          set +x
-          set -o pipefail
-          ./ci/test.sh
-          if [[ ${sha1} == master ]]
-          then
-            ./ci/publish.sh
-          fi
-
+      - '{step}':
+    publishers: '{obj:publishers}'

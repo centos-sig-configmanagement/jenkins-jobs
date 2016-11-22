@@ -1,0 +1,24 @@
+- builder:
+    name: jjb-test
+    builders:
+      - shell: |
+          #!/bin/bash -e
+          # Ensure we do not expose secrets
+          set +x
+          set -o pipefail
+          ./ci/test.sh
+          if [[ ${sha1} == master ]]
+          then
+            ./ci/publish.sh
+          fi
+
+- builder:
+    name: jjb-publish
+    builders:
+      - jjb-test
+      - shell: |
+          #!/bin/bash -e
+          # Ensure we do not expose secrets
+          set +x
+          ./ci/publish.sh
+
