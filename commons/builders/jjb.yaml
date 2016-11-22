@@ -1,5 +1,5 @@
 - builder:
-    name: jjb-test
+    name: jenkins-jobs-test
     builders:
       - shell: |
           #!/bin/bash -e
@@ -7,18 +7,23 @@
           set +x
           set -o pipefail
           ./ci/test.sh
-          if [[ ${sha1} == master ]]
-          then
-            ./ci/publish.sh
-          fi
 
 - builder:
-    name: jjb-publish
+    name: jenkins-jobs-publish
     builders:
-      - jjb-test
       - shell: |
           #!/bin/bash -e
           # Ensure we do not expose secrets
           set +x
           ./ci/publish.sh
 
+- builder:
+    name: jenkins-jobs-pullrequest
+    builders:
+      - jenkins-jobs-test
+
+- builder:
+    name: jenkins-jobs-masterbranch
+    builders:
+      - jenkins-jobs-test
+      - jenkins-jobs-publish

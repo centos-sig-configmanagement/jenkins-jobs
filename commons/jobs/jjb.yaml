@@ -1,55 +1,6 @@
 - project:
     name: sig-configmanagement-jjb
     jobs:
-      - sig-configmanagement-jjb-{name}:
-          project-name: jenkins-jobs
-          name: pr
-          prettyname: Job Builder (Pull Requests)
-          step: jjb-test
-          triggers:
-            - githubprb:
-                admins:
-                  - roidelapluie
-                  - hguemar
-                  - fcami
-          scm:
-            - git:
-                refspec: +refs/pull/*:refs/remotes/origin/pr/*
-                url: https://github.com/centos-sig-configmanagement/jenkins-jobs
-                branches:
-                  - '${{sha1}}'
-          publishers: []
-      - sig-configmanagement-jjb-{name}:
-          project-name: jenkins-jobs
-          name: master
-          prettyname: 'Job Builder'
-          step: jjb-publish
-          scm:
-            - git:
-                refspec: +refs/heads/*:refs/remotes/origin/*
-                url: https://github.com/centos-sig-configmanagement/jenkins-jobs
-                branches:
-                  - 'master'
-          triggers:
-            - github:
-          publishers: []
-#            - github-notifier
-
-- job-template:
-    name: 'sig-configmanagement-jjb-{name}'
-    display-name: 'Config Management SIG / {prettyname}'
-    node: sig-configmanagement
-    logrotate:
-      numToKeep: 15
-    parameters:
-      - string:
-          name: sha1
-          default: master
-    properties:
-      - github:
-          url: https://github.com/centos-sig-configmanagement/jenkins-jobs
-    scm: '{obj:scm}'
-    triggers: '{obj:triggers}'
-    builders:
-      - '{step}':
-    publishers: '{obj:publishers}'
+      - sig-job-{repository}:
+          repository: jenkins-jobs
+          kind: jjb

@@ -1,0 +1,54 @@
+- job-template:
+    name: 'sig-job-{repo}-{buildtype}'
+    display-name: 'Config Management SIG / {prettyname}'
+    node: sig-configmanagement
+    logrotate:
+      numToKeep: 15
+    parameters: '{obj:parameters}'
+    properties:
+      - github:
+          url: https://github.com/centos-sig-configmanagement/{repo}
+    scm: '{obj:scm}'
+    triggers: '{obj:triggers}'
+    builders:
+      - '{step}':
+    builders:
+      - '{repo}-{buildtype}':
+
+- job-group:
+      name: sig-job-{repository}
+      jobs:
+        - sig-job-{repo}-{buildtype}:
+            repo: '{repository}'
+            parameters:
+              - string:
+                  name: sha1
+                  default: master
+            buildtype: masterbranch
+            prettyname: Job Builder
+            triggers:
+              - github:
+            scm:
+              - git:
+                  refspec: +refs/heads/*:refs/remotes/origin/*
+                  url: https://github.com/centos-sig-configmanagement/{repository}
+                  branches:
+                    - 'master'
+          # - github-notifier is broken
+        - sig-job-{repo}-{buildtype}:
+            repo: '{repository}'
+            parameters: []
+            buildtype: pullrequest
+            prettyname: Job Builder (Pull Requests)
+            triggers:
+              - githubprb:
+                  admins:
+                    - roidelapluie
+                    - hguemar
+                    - fcami
+            scm:
+              - git:
+                  refspec: +refs/pull/*:refs/remotes/origin/pr/*
+                  url: https://github.com/centos-sig-configmanagement/{repository}
+                  branches:
+                    - '${{sha1}}'
