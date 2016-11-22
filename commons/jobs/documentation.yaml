@@ -1,6 +1,0 @@
-- project:
-    name: docamuntation
-    jobs:
-      - sig-job-{repository}:
-          repository: documentation
-          prettyname: Documentation
