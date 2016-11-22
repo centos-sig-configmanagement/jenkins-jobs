@@ -2,4 +2,8 @@
 
 jenkins-jobs --version
 
-jenkins-jobs test -r .
+rm output/* || true
+
+jenkins-jobs test -r . -o output
+
+diff <(ls output/|sort) test/jobslist

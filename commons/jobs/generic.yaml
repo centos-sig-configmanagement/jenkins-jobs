@@ -18,7 +18,7 @@
 - job-group:
       name: sig-job-{repository}
       jobs:
-        - sig-job-{repo}-{buildtype}:
+        - sig-configmanagement-{repo}-{buildtype}:
             repo: '{repository}'
             parameters:
               - string:
@@ -35,7 +35,7 @@
                   branches:
                     - 'master'
           # - github-notifier is broken
-        - sig-job-{repo}-{buildtype}:
+        - sig-configmanagement-{repo}-{buildtype}:
             repo: '{repository}'
             parameters: []
             buildtype: pullrequest
