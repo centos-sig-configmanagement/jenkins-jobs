@@ -3,3 +3,4 @@
     jobs:
       - sig-job-{repository}:
           repository: jenkins-jobs
+          prettyname: Jenkins Jobs

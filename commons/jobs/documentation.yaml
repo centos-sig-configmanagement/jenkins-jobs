@@ -5,3 +5,4 @@
     jobs:
       - sig-job-{repository}:
           repository: centos-sig-configmanagement.github.io
+          prettyname: Documentation

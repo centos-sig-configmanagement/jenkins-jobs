@@ -1,6 +1,6 @@
 - job-template:
     name: 'sig-configmanagement-{repo}-{buildtype}'
-    display-name: 'Config Management SIG / {prettyname}'
+    display-name: 'Config Management SIG / {displayname}'
     node: sig-configmanagement
     logrotate:
       numToKeep: 15
@@ -25,7 +25,7 @@
                   name: sha1
                   default: master
             buildtype: masterbranch
-            prettyname: Job Builder
+            displayname: '{prettyname}'
             triggers:
               - github:
             scm:
@@ -39,7 +39,7 @@
             repo: '{repository}'
             parameters: []
             buildtype: pullrequest
-            prettyname: Job Builder (Pull Requests)
+            displayname: '{prettyname} (Pull Requests)'
             triggers:
               - githubprb:
                   admins:
