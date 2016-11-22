@@ -2,6 +2,8 @@
     name: 'sig-configmanagement-documentation'
     display-name: 'Config Management SIG / Documentation'
     node: sig-configmanagement
+    logrotate:
+      numToKeep: 15
     parameters:
       - string:
           name: sha1
