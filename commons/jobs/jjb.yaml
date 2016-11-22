@@ -24,6 +24,8 @@
             - roidelapluie
             - hguemar
             - fcami
+    publishers:
+      - github-notifier
     builders:
       - shell: |
           #!/bin/bash -e
