@@ -1,8 +1,6 @@
----
-
 - project:
-    name: sig-configmanagement-centos-sig-configmanagement.github.io
+    name: docamuntation
     jobs:
       - sig-job-{repository}:
-          repository: centos-sig-configmanagement.github.io
+          repository: documentation
           prettyname: Documentation
