@@ -2,6 +2,8 @@
     name: 'sig-configmanagement-{name}-{version}'
     display-name: 'Config Management SIG / {prettyname} {version}'
     node: sig-configmanagement
+    logrotate:
+      numToKeep: 15
     properties:
       - github:
           url: https://github.com/centos-sig-configmanagement/{name}
