@@ -23,7 +23,7 @@
           touch .nojekyll
           git add .
           git commit -am 'Documentation'
-          git push -f git@github-doc:centos-sig-configmanagement/centos-sig-configmanagement.github.io master:gh-branches
+          git push -f git@github-doc:centos-sig-configmanagement/centos-sig-configmanagement.github.io master:gh-pages
 
 - builder:
     name: centos-sig-configmanagement.github.io-masterbranch
