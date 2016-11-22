@@ -29,9 +29,8 @@
           set +x
           set -o pipefail
           ./ci/test.sh
-          if [[ -z ${ghprbActualCommit} ]]
+          if [[ ${sha1} == master ]]
           then
-            exit 0
+            ./ci/publish.sh
           fi
-          ./ci/publish.sh
 

@@ -32,14 +32,13 @@
           source venv/bin/activate
           pip install -r requirements.txt
           make html
-          if [[ -z ${ghprbActualCommit} ]]
+          if [[ ${sha1} == master ]]
           then
-            exit 0
+            cd build/html
+            git init .
+            touch .nojekyll
+            git add .
+            git commit -am 'Documentation'
+            git push -f git@github.com/centos-sig-configmanagement/centos-sig-configmanagement.github.io master:gh-branches
           fi
-          cd build/html
-          git init .
-          touch .nojekyll
-          git add .
-          git commit -am 'Documentation'
-          git push -f git@github.com/centos-sig-configmanagement/centos-sig-configmanagement.github.io master:gh-branches
 
