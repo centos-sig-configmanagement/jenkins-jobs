@@ -1,13 +1,26 @@
 - project:
-    name: facter
-    prettyname: Facter
-    version:
-    - 2:
-        branch: master
-        # https://bugs.centos.org/view.php?id=12241
-        build-target: bananas7-el7
+    name: sig-configmanagement-facter
     jobs:
-    - 'sig-configmanagement-{name}-{version}'
-    admins:
-      - roidelapluie
-      - hguemar
+      - sig-job-{repository}:
+          repository: facter
+          prettyname: Facter
+          version:
+            - 2:
+                branch: master
+                builderparameters:
+                  buildtarget: configmanagement7-facter-3-el7-build
+                  name: facter
+
+- builder:
+    name: facter-pullrequest
+    builders:
+      - scratch-build:
+         name: '{name}'
+         buildtarget: '{buildtarget}'
+
+- builder:
+    name: facter-branch
+    builders:
+      - scratch-build:
+         name: '{name}'
+         buildtarget: '{buildtarget}'

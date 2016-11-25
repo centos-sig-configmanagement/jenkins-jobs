@@ -4,9 +4,11 @@
       - sig-job-{repository}:
           repository: documentation
           prettyname: Documentation
+          branch: master
+          version: 'git'
 
 - builder:
-    name: documentation-masterbranch
+    name: documentation-branch
     builders:
       - documentation-publish:
 

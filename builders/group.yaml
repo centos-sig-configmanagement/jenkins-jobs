@@ -7,4 +7,4 @@
       - get-srpm:
       - free-duffy-node:
       - scratch-build-rpm:
-          build-target: '{build-target}'
+          buildtarget: '{buildtarget}'

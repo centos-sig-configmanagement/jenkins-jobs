@@ -1,5 +1,5 @@
 - job-template:
-    name: 'sig-configmanagement-{repo}-{buildtype}'
+    name: 'sig-configmanagement-{repo}-{version}-{buildtype}'
     display-name: 'Config Management SIG / {displayname}'
     node: sig-configmanagement
     logrotate:
@@ -13,19 +13,20 @@
     builders:
       - '{step}':
     builders:
-      - '{repo}-{buildtype}':
+      - '{repo}-{buildtype}': '{obj:builderparameters}'
 
 - job-group:
       name: sig-job-{repository}
       jobs:
-        - sig-configmanagement-{repo}-{buildtype}:
+        - sig-configmanagement-{repo}-{version}-{buildtype}:
             repo: '{repository}'
             parameters:
               - string:
                   name: sha1
-                  default: master
-            buildtype: masterbranch
+                  default: '{branch}'
+            buildtype: branch
             displayname: '{prettyname}'
+            builderparameters: '{obj:builderparameters}'
             triggers:
               - github:
             scm:
@@ -33,12 +34,13 @@
                   refspec: +refs/heads/*:refs/remotes/origin/*
                   url: https://github.com/centos-sig-configmanagement/{repository}
                   branches:
-                    - 'master'
+                    - '{branch}'
           # - github-notifier is broken
-        - sig-configmanagement-{repo}-{buildtype}:
+        - sig-configmanagement-{repo}-{version}-{buildtype}:
             repo: '{repository}'
             parameters: []
             buildtype: pullrequest
+            builderparameters: '{obj:builderparameters}'
             displayname: '{prettyname} (Pull Requests)'
             triggers:
               - githubprb:
