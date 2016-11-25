@@ -1,0 +1,7 @@
+- builder:
+    name: make-test
+    builders:
+      - shell: |
+          #!/bin/bash -e
+          make test
+

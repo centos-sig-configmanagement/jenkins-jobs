@@ -1,0 +1,18 @@
+- project:
+    name: sig-configmanagement-puppet-acceptance-tests
+    jobs:
+      - sig-job-{repository}:
+          repository: puppet-acceptance-tests
+          prettyname: Puppet Acceptance Tests
+          branch: master
+          version: git
+
+- builder:
+    name: puppet-acceptance-tests-pullrequest
+    builders:
+      - make-test:
+
+- builder:
+    name: puppet-acceptance-tests-branch
+    builders:
+      - make-test:
