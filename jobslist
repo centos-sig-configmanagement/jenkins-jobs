@@ -1,7 +1,6 @@
-sig-configmanagement-ansible-2.2
-sig-configmanagement-documentation-masterbranch
-sig-configmanagement-documentation-pullrequest
-sig-configmanagement-facter-2
-sig-configmanagement-jenkins-jobs-masterbranch
-sig-configmanagement-jenkins-jobs-pullrequest
-sig-configmanagement-puppet-4
+sig-configmanagement-documentation-git-branch
+sig-configmanagement-documentation-git-pullrequest
+sig-configmanagement-facter-2-branch
+sig-configmanagement-facter-2-pullrequest
+sig-configmanagement-jenkins-jobs-git-branch
+sig-configmanagement-jenkins-jobs-git-pullrequest

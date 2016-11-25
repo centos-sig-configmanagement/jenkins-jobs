@@ -4,6 +4,8 @@
       - sig-job-{repository}:
           repository: jenkins-jobs
           prettyname: Jenkins Jobs
+          branch: master
+          version: 'git'
 
 - builder:
     name: jenkins-jobs-pullrequest
@@ -11,7 +13,7 @@
       - jenkins-jobs-test
 
 - builder:
-    name: jenkins-jobs-masterbranch
+    name: jenkins-jobs-branch
     builders:
       - jenkins-jobs-test
       - jenkins-jobs-publish
