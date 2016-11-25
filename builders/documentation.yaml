@@ -17,7 +17,6 @@
       - documentation-build:
       - shell: |
           #!/bin/bash -e
-          # Ensure we do not expose secrets
           cd build/html
           git init .
           touch .nojekyll

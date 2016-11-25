@@ -4,3 +4,5 @@ sig-configmanagement-facter-2-branch
 sig-configmanagement-facter-2-pullrequest
 sig-configmanagement-jenkins-jobs-git-branch
 sig-configmanagement-jenkins-jobs-git-pullrequest
+sig-configmanagement-puppet-acceptance-tests-git-branch
+sig-configmanagement-puppet-acceptance-tests-git-pullrequest
