@@ -29,3 +29,12 @@
           set -o pipefail
           cbs build --wait {buildtarget} *.src.rpm
 
+- builder:
+    name: allow-package-on-buildtarget
+    builders:
+      - shell: |
+          #!/bin/bash -e
+          # Ensure we do not expose secrets
+          set +x
+          cbs add-pkg {buildtarget}-candidate {name}
+

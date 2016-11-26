@@ -30,5 +30,8 @@
           specfile: '{name}.spec'
       - get-srpm:
       - free-duffy-node:
+      - allow-package-on-buildtarget:
+          name: '{name}'
+          buildtarget: '{buildtarget}'
       - build-candidate-rpm:
           buildtarget: '{buildtarget}'
