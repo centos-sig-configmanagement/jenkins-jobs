@@ -1,9 +1,20 @@
 - builder:
+    name: rpm-group
+    builders:
+      - scratch-build:
+          name: '{name}'
+          buildtarget: '{buildtarget}'
+      - build-candidate:
+          name: '{name}'
+          buildtarget: '{buildtarget}'
+
+- builder:
     name: scratch-build
     builders:
       - bootstrap-duffy-node-for-rpm-build:
       - build-srpm:
           specfile: '{name}.spec'
+      - get-srpm:
       - free-duffy-node:
       - scratch-build-rpm:
           buildtarget: '{buildtarget}'
@@ -19,5 +30,5 @@
           specfile: '{name}.spec'
       - get-srpm:
       - free-duffy-node:
-      - scratch-build-rpm:
+      - build-candidate-rpm:
           buildtarget: '{buildtarget}'
