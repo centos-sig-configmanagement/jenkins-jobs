@@ -67,6 +67,32 @@
           rsync -e "ssh $sshopts" -rlpt $CICO_hostname:SRPMS/ $(pwd)
 
 - builder:
+    name: install-candidate-package
+    builders:
+      - shell: |
+          #!/bin/bash -e
+          # Ensure we do not expose secrets
+          set +x
+          source jenkins-env
+          timeout=1200
+          sshopts="-t -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l root"
+          ssh_cmd="ssh $sshopts $CICO_hostname"
+          release="pr${{ghprbPullId?No pull id}}job${{BUILD_NUMBER?No build number}}"
+          echo -e "[{buildtag}-candidate]\nbaseurl=http://cbs.centos.org/repos/{buildtag}-candidate/\$basearch/os/\ngpgcheck=0" | tee $ssh_cmd /etc/yum.repos.d/{buildtag}-candidate.repo
+          until [[ $(repoquery --enablerepo={buildtag}-candidate --whatprovides "{name}-pull-request-build-id(${{release}})")
+          do
+            if [[ $SECONDS -gt ${{timeout}} ]]
+            then
+                echo "Could not find the package after ${{SECONDS}}s"
+                exit 1
+            fi
+            echo "Could not find {name}-pull-request-build-id(${{release}}) after ${{SECONDS}}s, retrying..."
+            sleep 30
+          done
+          yum install -y {name}-pull-request-build-id(${{release}})
+
+
+- builder:
     name: free-duffy-node
     builders:
       - shell: |

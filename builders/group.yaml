@@ -44,4 +44,7 @@
     name: test-candidate
     builders:
       - bootstrap-duffy-node-for-acceptance-test:
+      - install-candidate-package:
+          name: '{name}'
+          buildtag: '{buildtag}'
       - free-duffy-node:
