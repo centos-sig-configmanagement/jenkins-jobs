@@ -6,7 +6,7 @@
           # Ensure we do not expose secrets
           set +x
           set -o pipefail
-          sed "s/^Release:.*/Release: ${{ghprbActualCommit?No commit}}/" -i {specfile}
+          sed "s/^Release:.*/Release: ${{BUILD_NUMBER?No build number}}-${{ghprbActualCommit?No commit}}/" -i {specfile}
           sed "/Release: ${{ghprbActualCommit?No commit}}/aProvides: {name}-git-commit = ${{ghprbActualCommit?No commit}}" -i {specfile}
           sed "/Release: ${{ghprbActualCommit?No commit}}/aProvides: {name}-pull-request = ${{ghprbPullId?No pull id}}" -i {specfile}
           sed "/Release: ${{ghprbActualCommit?No commit}}/aEpoch: ${{BUILD_NUMBER?No build number}}" -i {specfile}
