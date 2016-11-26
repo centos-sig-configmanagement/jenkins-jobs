@@ -1,14 +1,9 @@
 - builder:
     name: documentation-build
     builders:
+      - setup-virtualenv:
       - shell: |
-          #!/bin/bash -e
-          # Ensure we do not expose secrets
-          set +x
-          set -o pipefail
-          virtualenv venv
-          source venv/bin/activate
-          pip install -r requirements.txt
+          #!/bin/bash -xe
           make html
 
 - builder:

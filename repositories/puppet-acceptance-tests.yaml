@@ -10,9 +10,9 @@
 - builder:
     name: puppet-acceptance-tests-pullrequest
     builders:
-      - make-test:
+      - puppet-acceptance-tests:
 
 - builder:
     name: puppet-acceptance-tests-branch
     builders:
-      - make-test:
+      - puppet-acceptance-tests:
