@@ -6,9 +6,6 @@
           # Ensure we do not expose secrets
           set +x
           set -o pipefail
-          cbs build --wait --scratch {buildtarget} *.src.rpm | tee cbs.log
-          build_id=$(awk '/Created task:/ {{print $3}}' cbs.log)
-          mkdir archives
-          cd archives
-          cbs download-task $build_id
+          cbs build --wait --scratch {buildtarget} *.src.rpm
+          rm *.src.rpm
 
