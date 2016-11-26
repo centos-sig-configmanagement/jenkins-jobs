@@ -24,6 +24,12 @@
       - copy-workspace-to-duffy-node:
 
 - builder:
+    name: bootstrap-duffy-node-for-acceptance-test
+    builders:
+      - bootstrap-duffy-node:
+          packages: yum-utils
+
+- builder:
     name: copy-workspace-to-duffy-node
     builders:
       - shell: |
