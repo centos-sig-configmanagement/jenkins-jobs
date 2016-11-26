@@ -14,13 +14,13 @@
 - builder:
     name: facter-pullrequest
     builders:
-      - rpm-build:
+      - rpm-group:
          name: '{name}'
          buildtarget: '{buildtarget}'
 
 - builder:
     name: facter-branch
     builders:
-      - rpm-build:
+      - rpm-group:
          name: '{name}'
          buildtarget: '{buildtarget}'
