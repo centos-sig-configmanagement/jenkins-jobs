@@ -1,4 +1,14 @@
 - builder:
+    name: rpm-build
+    builders:
+      - scratch-build-rpm:
+         name: '{name}'
+         buildtarget: '{buildtarget}'
+      - build-candidate-rpm:
+         name: '{name}'
+         buildtarget: '{buildtarget}'
+
+- builder:
     name: scratch-build-rpm
     builders:
       - shell: |
@@ -6,9 +16,16 @@
           # Ensure we do not expose secrets
           set +x
           set -o pipefail
-          cbs build --wait --scratch {buildtarget} *.src.rpm | tee cbs.log
-          build_id=$(awk '/Created task:/ {{print $3}}' cbs.log)
-          mkdir archives
-          cd archives
-          cbs download-task $build_id
+          cbs build --wait --scratch {buildtarget} *.src.rpm
+          rm *.src.rpm
+
+- builder:
+    name: build-candidate-rpm
+    builders:
+      - shell: |
+          #!/bin/bash -e
+          # Ensure we do not expose secrets
+          set +x
+          set -o pipefail
+          cbs build --wait {buildtarget} *.src.rpm
 
