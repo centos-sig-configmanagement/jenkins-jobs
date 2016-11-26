@@ -36,5 +36,5 @@
           #!/bin/bash -e
           # Ensure we do not expose secrets
           set +x
-          cbs add-pkg {buildtarget}-candidate {name}
+          cbs add-pkg --owner roidelapluie {buildtarget}-candidate {name}
 
