@@ -78,7 +78,7 @@
           sshopts="-t -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l root"
           ssh_cmd="ssh $sshopts $CICO_hostname"
           release="pr${{ghprbPullId?No pull id}}job${{BUILD_NUMBER?No build number}}"
-          echo -e "[{buildtag}-candidate]\nbaseurl=http://cbs.centos.org/repos/{buildtag}-candidate/\$basearch/os/\ngpgcheck=0" | tee $ssh_cmd /etc/yum.repos.d/{buildtag}-candidate.repo
+          echo -e "[{buildtag}-candidate]\nbaseurl=http://cbs.centos.org/repos/{buildtag}-candidate/\$basearch/os/\ngpgcheck=0" | $ssh_cmd tee /etc/yum.repos.d/{buildtag}-candidate.repo
           until [[ $(repoquery --enablerepo={buildtag}-candidate --whatprovides "{name}-pull-request-build-id(${{release}})")
           do
             if [[ $SECONDS -gt ${{timeout}} ]]
