@@ -9,6 +9,7 @@
                 branch: master
                 builderparameters:
                   buildtarget: configmanagement7-facter-3-el7
+                  buildtag: configmanagement7-facter-3
                   name: facter
 
 - builder:
@@ -17,6 +18,7 @@
       - rpm-group:
          name: '{name}'
          buildtarget: '{buildtarget}'
+         buildtag: '{buildtag}'
 
 - builder:
     name: facter-branch
@@ -24,3 +26,4 @@
       - rpm-group:
          name: '{name}'
          buildtarget: '{buildtarget}'
+         buildtag: '{buildtag}'

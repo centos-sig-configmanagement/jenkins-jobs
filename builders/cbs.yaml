@@ -30,11 +30,11 @@
           cbs build --wait {buildtarget} *.src.rpm
 
 - builder:
-    name: allow-package-on-buildtarget
+    name: allow-package-on-buildtag
     builders:
       - shell: |
           #!/bin/bash -e
           # Ensure we do not expose secrets
           set +x
-          cbs add-pkg --owner roidelapluie {buildtarget}-candidate {name}
+          cbs add-pkg --owner roidelapluie {buildtag}-candidate {name}
 
