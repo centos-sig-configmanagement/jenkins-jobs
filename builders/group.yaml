@@ -22,10 +22,10 @@
 - builder:
     name: build-candidate
     builders:
-      - bootstrap-duffy-node-for-rpm-build:
       - transform-spec-file:
           specfile: '{name}.spec'
           name: '{name}'
+      - bootstrap-duffy-node-for-rpm-build:
       - build-srpm:
           specfile: '{name}.spec'
       - get-srpm:
