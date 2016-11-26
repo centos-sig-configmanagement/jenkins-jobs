@@ -88,6 +88,7 @@
             fi
             echo "Could not find {name}-pull-request-build-id(${{release}}) after ${{SECONDS}}s, retrying..."
             sleep 30
+            yum clean all
           done
           yum install -y {name}-pull-request-build-id(${{release}})
 
