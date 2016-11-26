@@ -8,6 +8,9 @@
           name: '{name}'
           buildtarget: '{buildtarget}'
           buildtag: '{buildtag}'
+      - test-candidate:
+          name: '{name}'
+          buildtag: '{buildtag}'
 
 - builder:
     name: scratch-build
@@ -36,3 +39,9 @@
           buildtag: '{buildtag}'
       - build-candidate-rpm:
           buildtarget: '{buildtarget}'
+
+- builders:
+    name: test-candidate
+    steps:
+      - bootstrap-duffy-node-for-acceptance-test:
+      - free-duffy-node:
