@@ -40,8 +40,8 @@
       - build-candidate-rpm:
           buildtarget: '{buildtarget}'
 
-- builders:
+- builder:
     name: test-candidate
-    steps:
+    builders:
       - bootstrap-duffy-node-for-acceptance-test:
       - free-duffy-node:
