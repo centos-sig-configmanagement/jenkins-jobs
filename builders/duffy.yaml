@@ -79,7 +79,7 @@
           ssh_cmd="ssh $sshopts $CICO_hostname"
           release="pr${{ghprbPullId?No pull id}}job${{BUILD_NUMBER?No build number}}"
           echo -e "[{buildtag}-candidate]\nbaseurl=http://cbs.centos.org/repos/{buildtag}-candidate/\$basearch/os/\ngpgcheck=0" | $ssh_cmd tee /etc/yum.repos.d/{buildtag}-candidate.repo
-          until [[ $(repoquery --enablerepo={buildtag}-candidate --whatprovides "{name}-pull-request-build-id(${{release}})"|wc -l) -eq 1 ]]
+          until [[ $($ssh_cmd repoquery --enablerepo={buildtag}-candidate --whatprovides "{name}-pull-request-build-id(${{release}})"|wc -l) -eq 1 ]]
           do
             if [[ $SECONDS -gt ${{timeout}} ]]
             then
@@ -88,9 +88,9 @@
             fi
             echo "Could not find {name}-pull-request-build-id(${{release}}) after ${{SECONDS}}s, retrying..."
             sleep 30
-            yum clean all
+            $ssh_cmd yum clean all
           done
-          yum install -y {name}-pull-request-build-id(${{release}})
+          $ssh_cmd yum install -y {name}-pull-request-build-id(${{release}})
 
 
 - builder:
