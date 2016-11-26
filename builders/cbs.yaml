@@ -36,5 +36,6 @@
           #!/bin/bash -e
           # Ensure we do not expose secrets
           set +x
-          cbs add-pkg --owner roidelapluie {buildtag}-candidate {name}
+          # Return true ; if this is not working, the next step will fail anyway
+          cbs add-pkg --owner roidelapluie {buildtag}-candidate {name} || true
 
