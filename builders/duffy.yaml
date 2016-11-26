@@ -17,7 +17,7 @@
           $ssh_cmd yum -y install {packages}
 
 - builder:
-    name: bootstrap-duffy-node-for-srpm
+    name: bootstrap-duffy-node-for-rpm-build
     builders:
       - bootstrap-duffy-node:
           packages: rpmdevtools rpm-build

@@ -14,13 +14,13 @@
 - builder:
     name: facter-pullrequest
     builders:
-      - scratch-build:
+      - rpm-build:
          name: '{name}'
          buildtarget: '{buildtarget}'
 
 - builder:
     name: facter-branch
     builders:
-      - scratch-build:
+      - rpm-build:
          name: '{name}'
          buildtarget: '{buildtarget}'

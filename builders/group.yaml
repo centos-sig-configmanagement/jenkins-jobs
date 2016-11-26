@@ -1,7 +1,20 @@
 - builder:
     name: scratch-build
     builders:
-      - bootstrap-duffy-node-for-srpm:
+      - bootstrap-duffy-node-for-rpm-build:
+      - build-srpm:
+          specfile: '{name}.spec'
+      - free-duffy-node:
+      - scratch-build-rpm:
+          buildtarget: '{buildtarget}'
+
+- builder:
+    name: build-candidate
+    builders:
+      - bootstrap-duffy-node-for-rpm-build:
+      - transform-spec-file:
+          specfile: '{name}.spec'
+          name: '{name}'
       - build-srpm:
           specfile: '{name}.spec'
       - get-srpm:
