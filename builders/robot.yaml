@@ -1,0 +1,5 @@
+- builder:
+    name: puppet-acceptance-tests
+    builders:
+      - setup-virtualenv:
+      - make-test-cico:
