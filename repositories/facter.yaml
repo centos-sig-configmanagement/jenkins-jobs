@@ -15,7 +15,7 @@
 - builder:
     name: facter-pullrequest
     builders:
-      - rpm-group:
+      - robotrpm:
          name: '{name}'
          buildtarget: '{buildtarget}'
          buildtag: '{buildtag}'
