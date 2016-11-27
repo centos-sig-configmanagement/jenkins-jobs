@@ -10,6 +10,7 @@
       - shell: |
           #!/bin/bash -x
           export CICO_API_KEY=$(cat ~/duffy.key)
+          export CICO_ENDPOINT=http://admin.ci.centos.org:8080/
           export BUILDTARGET={buildtarget}
           export BUILDTAG={buildtag}
           export SPECFILE={name}
