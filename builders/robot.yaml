@@ -15,6 +15,7 @@
           export SPECFILE={name}
           git clone https://github.com/centos-sig-configmanagement/puppet-acceptance-tests tests
           virtualenv venv
-          pip install -r tests/requirements.txt
           source venv/bin/activate
+          pip install --upgrade setuptools
+          pip install -r tests/requirements.txt
           make -C tests rpm
