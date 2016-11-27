@@ -3,3 +3,18 @@
     builders:
       - setup-virtualenv:
       - make-test-cico:
+
+- builder:
+    name: robotrpm
+    builders:
+      - shell: |
+          #!/bin/bash -x
+          export CICO_API_KEY=$(cat ~/duffy.key)
+          export BUILDTARGET={buildtarget}
+          export BUILDTAG={buildtag}
+          export SPECFILE={name}
+          git clone https://github.com/centos-sig-configmanagement/puppet-acceptance-tests tests
+          virtualenv venv
+          pip install -r tests/requirements.txt
+          source venv/bin/activate
+          make -C tests rpm
