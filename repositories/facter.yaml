@@ -8,8 +8,8 @@
             - 2:
                 branch: master
                 builderparameters:
-                  buildtarget: configmanagement7-facter-3-el7
-                  buildtag: configmanagement7-facter-3
+                  buildtarget: configmanagement7-facter-2-el7
+                  buildtag: configmanagement7-facter-2
                   name: facter
 
 - builder:

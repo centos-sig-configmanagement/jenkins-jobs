@@ -14,6 +14,10 @@
           export BUILDTARGET={buildtarget}
           export BUILDTAG={buildtag}
           export SPECFILE={name}
+          export PACKAGE={name}
+          if [[ -n ${{ghprbPullId}} ]]
+            export RELEASE=pr${{ghprbPullId}}job${{BUILD_NUMBER}}
+          end
           git clone https://github.com/centos-sig-configmanagement/puppet-acceptance-tests tests
           virtualenv venv
           source venv/bin/activate
