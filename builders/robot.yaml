@@ -17,7 +17,7 @@
           export PACKAGE={name}
           if [[ -n ${{ghprbPullId}} ]]; then
             export RELEASE=pr${{ghprbPullId}}job${{BUILD_NUMBER}}
-          end
+          fi
           git clone https://github.com/centos-sig-configmanagement/puppet-acceptance-tests tests
           virtualenv venv
           source venv/bin/activate
