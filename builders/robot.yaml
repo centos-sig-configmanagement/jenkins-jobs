@@ -23,4 +23,4 @@
           source venv/bin/activate
           pip install --upgrade setuptools
           pip install -r tests/requirements.txt
-          make -C tests rpm
+          make -C tests {name}
