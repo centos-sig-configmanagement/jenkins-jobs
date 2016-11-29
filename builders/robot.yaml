@@ -15,7 +15,7 @@
           export BUILDTAG={buildtag}
           export SPECFILE={name}
           export PACKAGE={name}
-          if [[ -n ${{ghprbPullId}} ]]
+          if [[ -n ${{ghprbPullId}} ]]; then
             export RELEASE=pr${{ghprbPullId}}job${{BUILD_NUMBER}}
           end
           git clone https://github.com/centos-sig-configmanagement/puppet-acceptance-tests tests
@@ -23,4 +23,4 @@
           source venv/bin/activate
           pip install --upgrade setuptools
           pip install -r tests/requirements.txt
-          make -C tests rpm
+          make -C tests {name}
