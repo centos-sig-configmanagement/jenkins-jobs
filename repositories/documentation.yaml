@@ -16,3 +16,12 @@
     name: documentation-pullrequest
     builders:
       - documentation-build:
+
+- publisher:
+    name: documentation-branch
+    publishers: []
+
+- publisher:
+    name: documentation-pullrequest
+    publishers: []
+

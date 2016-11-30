@@ -16,3 +16,12 @@
     name: puppet-acceptance-tests-branch
     builders:
       - puppet-acceptance-tests:
+
+- publisher:
+    name: puppet-acceptance-tests-branch
+    publishers: []
+
+- publisher:
+    name: puppet-acceptance-tests-pullrequest
+    publishers: []
+

@@ -17,3 +17,12 @@
     builders:
       - jenkins-jobs-test
       - jenkins-jobs-publish
+
+- publisher:
+    name: jenkins-jobs-branch
+    publishers: []
+
+- publisher:
+    name: jenkins-jobs-pullrequest
+    publishers: []
+
