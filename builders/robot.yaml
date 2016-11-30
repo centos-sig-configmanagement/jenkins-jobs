@@ -23,5 +23,5 @@
           source venv/bin/activate
           pip install --upgrade setuptools
           pip install -r tests/requirements.txt
-          make -C tests {name}
+          make -C tests {name} || true
           make -C tests rebot

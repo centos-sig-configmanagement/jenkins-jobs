@@ -12,6 +12,18 @@
                   buildtag: configmanagement7-facter-2
                   name: facter
 
+- publisher:
+    name: facter-branch
+    publishers: []
+
+- publisher:
+    name: facter-pullrequest
+    publishers:
+      - xunit:
+          types:
+            - junit:
+                pattern: "results/report.xml"
+
 - builder:
     name: facter-pullrequest
     builders:
