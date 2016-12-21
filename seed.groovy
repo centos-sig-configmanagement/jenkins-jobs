@@ -1,6 +1,6 @@
 import jenkins.model.Jenkins
 import org.yaml.snakeyaml.Yaml
-import seeds.utilities.MagicParameters
+import utilities.MagicParameters
 
 Yaml myYaml = new Yaml()
 def scriptApproval = Jenkins.instance.getExtensionList('org.jenkinsci.plugins.scriptsecurity.scripts.ScriptApproval')[0]
