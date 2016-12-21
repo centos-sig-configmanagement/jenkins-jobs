@@ -1,6 +1,11 @@
 import jenkins.model.Jenkins
+import org.yaml.snakeyaml.Yaml
+import seeds.utilities.MagicParameters
 
+Yaml myYaml = new Yaml()
 def scriptApproval = Jenkins.instance.getExtensionList('org.jenkinsci.plugins.scriptsecurity.scripts.ScriptApproval')[0]
+
+def globalMap = myYaml.load(readFileFromWorkspace('cfg/global.yaml'))
 
 def folderName = "sig-configmanagement"
 
@@ -8,8 +13,12 @@ folder(folderName){
     displayName("Configuration Management SIG")
 }
 
-pipelineJob("${folderName}/seed") {
+job = pipelineJob("${folderName}/seed") {
     displayName("Seed Job")
+
+    properties {
+        githubProjectUrl("${globalMap.githubUrlPrefix}/${globalMap.seedRepo}")
+    }
 
     triggers {
         githubPush()
@@ -23,3 +32,4 @@ pipelineJob("${folderName}/seed") {
         }
     }
 }
+MagicParameters.addParameters(job, globalMap)

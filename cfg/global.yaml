@@ -1,0 +1,5 @@
+---
+topFolder: sig-configmanagement
+githubOrg: centos-sig-configmanagement
+githubUrlPrefix: https://github.com/centos-sig-configmanagement/
+seedRepo: jenkins-jobs

@@ -1,6 +1,9 @@
 node('sig-configmanagement') {
+    properties {
+        githubProjectUrl()
+    }
     stage('Checkout') {
-        git 'https://github.com/centos-sig-configmanagement/jenkins-jobs'
+        git ''
     }
     stage('Generate Seed Job and Folder') {
         jobDsl additionalClasspath: 'lib/*.jar', removedJobAction: 'DISABLE', removedViewAction: 'DELETE', targets: 'seed.groovy'
