@@ -8,7 +8,7 @@ folder(folderName){
     displayName("Configuration Management SIG")
 }
 
-pipelineJob("${folderName}") {
+pipelineJob("${folderName}/seed") {
     displayName("Configuration Management SIG / Seed Job")
     buildScript = readFileFromWorkspace('Jenkinsfile')
     scriptApproval.approveScript(scriptApproval.hash(buildScript, 'groovy'))
