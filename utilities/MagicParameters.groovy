@@ -4,7 +4,7 @@ import groovy.json.StringEscapeUtils
 
 class MagicParameters {
     static void addParameters(def job, def object) {
-        def message = '<div class="warning">Automatically set by Jenkins Job Builder. Do not change this.</div>'
+        def message = '<div class="warning">Automatically set by Jenkins Job DSL plugin. Do not change this.</div>'
         object.each {
             name, value ->
                 if (value instanceof String) {
