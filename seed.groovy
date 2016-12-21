@@ -9,7 +9,12 @@ folder(folderName){
 }
 
 pipelineJob("${folderName}/seed") {
-    displayName("Configuration Management SIG / Seed Job")
+    displayName("Seed Job")
+
+    triggers {
+        githubPush()
+    }
+
     buildScript = readFileFromWorkspace('Jenkinsfile')
     scriptApproval.approveScript(scriptApproval.hash(buildScript, 'groovy'))
     definition {
