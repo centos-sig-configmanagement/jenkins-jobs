@@ -1,9 +1,6 @@
 node('sig-configmanagement') {
-    properties {
-        githubProjectUrl()
-    }
     stage('Checkout') {
-        git ''
+        git "${params.githubUrlPrefix}/${params.seedRepo}"
     }
     stage('Generate Seed Job and Folder') {
         jobDsl additionalClasspath: 'lib/*.jar', removedJobAction: 'DISABLE', removedViewAction: 'DELETE', targets: 'seed.groovy'
